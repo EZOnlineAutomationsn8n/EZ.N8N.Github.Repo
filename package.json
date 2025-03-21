@@ -20,5 +20,4 @@
   "homepage": "https://github.com/EZOnlineAutomationsn8n/EZ.N8N.Github.Repo#readme",
   "dependencies": {
     "express": "^4.21.2",
-    "n8n": "^0.144.0"
 
