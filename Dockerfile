@@ -4,11 +4,11 @@ ENV N8N_BASIC_AUTH_ACTIVE=true
 ENV N8N_BASIC_AUTH_USER=admin
 ENV N8N_BASIC_AUTH_PASSWORD=admin123
 ENV N8N_HOST=0.0.0.0
-ENV N8N_PORT=5678
-ENV WEBHOOK_URL=https://ezonline-n8n-webservice.onrender.com
+ENV N8N_PORT=443
+ENV WEBHOOK_URL=https://ezonline-n8n-webservice.onrender.com/
 ENV GENERIC_TIMEZONE=Europe/Amsterdam
 ENV N8N_PROTOCOL=https
 
-EXPOSE 5678
+EXPOSE 443
 
 CMD ["n8n"]
