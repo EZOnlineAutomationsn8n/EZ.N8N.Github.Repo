@@ -1,23 +1,15 @@
 {
-  "name": "ez.n8n.github.repo",
+  "name": "n8n-render-deploy",
   "version": "1.0.0",
-  "description": "",
+  "description": "Deployment config for n8n on Render using Docker",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "n8n"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/EZOnlineAutomationsn8n/EZ.N8N.Github.Repo.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/EZOnlineAutomationsn8n/EZ.N8N.Github.Repo/issues"
-  },
-  "homepage": "https://github.com/EZOnlineAutomationsn8n/EZ.N8N.Github.Repo#readme",
   "dependencies": {
-    "express": "^4.21.2",
+    "n8n": "^1.45.0"
+  },
+  "license": "MIT"
+}
+
 
