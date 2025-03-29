@@ -1,8 +1,3 @@
-# ==============================
-# 📦 docker-compose.yml
-# ==============================
-version: "3.7"
-
 services:
   n8n:
     image: n8nio/n8n
@@ -11,11 +6,11 @@ services:
       - "443:5678"
     environment:
       - DB_TYPE=postgresdb
-      - DB_POSTGRESDB_HOST=dpg-ovh3p81evqrc73b53nfg-a.frankfurt-postgres.render.com
+      - DB_POSTGRESDB_HOST=dpg-...
       - DB_POSTGRESDB_PORT=5432
-      - DB_POSTGRESDB_DATABASE=n8n_database_postgresql
-      - DB_POSTGRESDB_USER=n8n_database_postgresql_user
-      - DB_POSTGRESDB_PASSWORD=MS98C0l3ccF93txUVKE2VXCTCuD3UDUz
+      - DB_POSTGRESDB_DATABASE=...
+      - DB_POSTGRESDB_USER=...
+      - DB_POSTGRESDB_PASSWORD=...
       - DB_POSTGRESDB_SSL=true
       - N8N_BASIC_AUTH_ACTIVE=true
       - N8N_BASIC_AUTH_USER=admin
@@ -24,5 +19,6 @@ services:
       - N8N_HOST=0.0.0.0
       - N8N_PORT=5678
       - TZ=Europe/Amsterdam
+      - N8N_ENCRYPTION_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MGRhN2MyOS05MTIwLTRlNmItYmRhMy1lMmYwNGUwYzJhYTYiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwiaWF0IjoxNzQxMDEwNzc5fQ.FZpCmegjXuTfk17hUbURxjw-ERmZp3zsUlaR8SrDdHA
     volumes:
       - .n8n:/home/node/.n8n
