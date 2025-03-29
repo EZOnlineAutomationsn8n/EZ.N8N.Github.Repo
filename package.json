@@ -10,16 +10,9 @@
     "type": "git",
     "url": "https://github.com/EZOnlineAutomationsn8n/EZ.N8N.Github.Repo.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/EZOnlineAutomationsn8n/EZ.N8N.Github.Repo/issues"
-  },
-  "homepage": "https://github.com/EZOnlineAutomationsn8n/EZ.N8N.Github.Repo#readme",
+  "author": "Dennis",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.21.2",
     "n8n": "^1.45.0"
-  },
-  "license": "MIT"
+  }
+}
