@@ -1,6 +1,21 @@
 version: "3.7"
 
 services:
+  postgres:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   n8n:
     image: n8nio/n8n
     restart: always
@@ -8,7 +23,7 @@ services:
       - "10000:10000"
     environment:
       - DB_TYPE=postgresdb
-      - DB_POSTGRESDB_HOST=${DB_HOST}
+      - DB_POSTGRESDB_HOST=postgres
       - DB_POSTGRESDB_PORT=5432
       - DB_POSTGRESDB_DATABASE=${DB_NAME}
       - DB_POSTGRESDB_USER=${DB_USER}
@@ -22,3 +37,9 @@ services:
       - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION}
     volumes:
       - /home/node/.n8n:/home/node/.n8n
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:
