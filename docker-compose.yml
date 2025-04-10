@@ -1,79 +1,33 @@
-#############################
-# 🟣 docker-compose.render.yml
-# ▶️ Voor productie op Render met externe PostgreSQL DB
-#############################
-version: "3.8"
+version: "3.7"
 
 services:
-  n8n:
-    image: n8nio/n8n
-    restart: always
-    ports:
-      - "443:5678"
-    environment:
-      DB_TYPE: postgresdb
-      DB_POSTGRESDB_HOST: ${DB_POSTGRESDB_HOST}
-      DB_POSTGRESDB_PORT: 5432
-      DB_POSTGRESDB_DATABASE: ${DB_POSTGRESDB_DATABASE}
-      DB_POSTGRESDB_USER: ${DB_POSTGRESDB_USER}
-      DB_POSTGRESDB_PASSWORD: ${DB_POSTGRESDB_PASSWORD}
-      N8N_BASIC_AUTH_ACTIVE: ${N8N_BASIC_AUTH_ACTIVE}
-      N8N_BASIC_AUTH_USER: ${N8N_BASIC_AUTH_USER}
-      N8N_BASIC_AUTH_PASSWORD: ${N8N_BASIC_AUTH_PASSWORD}
-      N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY}
-      WEBHOOK_URL: ${WEBHOOK_URL}
-      N8N_HOST: 0.0.0.0
-      N8N_PORT: 5678
-      GENERIC_TIMEZONE: Europe/Amsterdam
-      N8N_PROTOCOL: https
-    volumes:
-      - n8n_data:/home/node/.n8n
-volumes:
-  n8n_data:
-
-
-#############################
-# 🟡 docker-compose.local.yml
-# ▶️ Voor lokale test met lokale PostgreSQL container
-#############################
-version: "3.8"
-
-services:
-  postgres:
-    image: postgres:15-alpine
-    restart: always
-    environment:
-      POSTGRES_USER: local_user
-      POSTGRES_PASSWORD: local_password
-      POSTGRES_DB: local_db
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
   n8n:
     image: n8nio/n8n
     restart: always
     ports:
       - "5678:5678"
     environment:
-      DB_TYPE: postgresdb
-      DB_POSTGRESDB_HOST: postgres
-      DB_POSTGRESDB_PORT: 5432
-      DB_POSTGRESDB_DATABASE: local_db
-      DB_POSTGRESDB_USER: local_user
-      DB_POSTGRESDB_PASSWORD: local_password
-      N8N_BASIC_AUTH_ACTIVE: true
-      N8N_BASIC_AUTH_USER: admin
-      N8N_BASIC_AUTH_PASSWORD: localtest123
-      N8N_ENCRYPTION_KEY: localdev-secret-key-123
-      WEBHOOK_URL: http://localhost:5678/webhook
-      N8N_HOST: 0.0.0.0
-      N8N_PORT: 5678
-      GENERIC_TIMEZONE: Europe/Amsterdam
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=dpg-cvh3p81svqrc73b53nfg-a.frankfurt-postgres.render.com
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=n8n_database_postgresql
+      - DB_POSTGRESDB_USER=n8n_database_postgresql_user
+      - DB_POSTGRESDB_PASSWORD=TakeAction4Result!
+      - DB_POSTGRESDB_SSL=true
+      - DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED=false
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=TakeAction4Result!
+      - N8N_HOST=ezonline-n8n-webservice.onrender.com
+      - N8N_PORT=5678
+      - WEBHOOK_URL=https://ezonline-n8n-webservice.onrender.com
+      - GENERIC_TIMEZONE=Europe/Amsterdam
+      - N8N_LOG_LEVEL=info
+      - N8N_JWT_SECRET=3c8ff2d1be1946d998d823bb17335c8c
+      - TELEGRAM_BOT_TOKEN=7574502882:AAGVR4EP7Vx5NuQDd7y1TxGZgpo27Yd2es8
+      - SERPAPI_KEY=0888c4b51f0d626130b9ef5aa12ffabc98b414e7
     volumes:
       - n8n_data:/home/node/.n8n
-    depends_on:
-      - postgres
 
 volumes:
-  pgdata:
   n8n_data:
